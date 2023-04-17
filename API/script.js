@@ -7,15 +7,13 @@ const mostrarPerros = async () => {
 
     const razas = Object.keys(data.message); // array con todos las razas de los perros
 
-    const alfabeto = "abcdefghijklmnopqrstuvwxyz"
+    const alfabeto = "abcdefghijklmnopqrstuvwxyz" // creo una cadena del abecedario
 
-
-    // razas.forEach((raza) => { //recorro cada elemento
     for (let i = 0; i < alfabeto.length; i++) {
-      const letra = alfabeto[i];
-      const section = document.createElement("section")
+      const letra = alfabeto[i]; 
+      const section = document.createElement("section") 
       const titulo = document.createElement("h2")
-      titulo.innerText = letra
+      titulo.innerText = letra //agrego la letra a mi titulo de mi seccion
       const lista = document.createElement("ul")
       section.appendChild(titulo)
       section.appendChild(lista)
@@ -24,8 +22,8 @@ const mostrarPerros = async () => {
       for (let j = 0; j < razas.length; j++) {
         const raza = razas[j];
 
-        if (raza.charAt(0) === letra) {
-          const item = document.createElement("li")
+        if (raza.charAt(0) === letra) { //si la primera letra de la raza de un perro es igual a mi cadena de abedeario crea lo siguiente
+          const item = document.createElement("li") //creo un li
           const link = document.createElement("a"); // tambien un enlace 
           link.innerText = raza; // obtengo el nombre que esta en la variable raza ya que esta contiene el nombre de la raza que se esta recorriendo en el array razas 
           link.href = "#"; // le asigno # para decirle que no se dirija a otra pag
@@ -37,7 +35,7 @@ const mostrarPerros = async () => {
           lista.appendChild(item)
         }
       }
-      if (titulo.nextSibling.childNodes.length === 0) { //si el hermano de 
+      if (titulo.nextSibling.childNodes.length === 0) { //si el hijo del hermano de titulo es igual a 0, eliminame las secciones
         section.remove()
     };
       // creo una lista de elementos
@@ -50,11 +48,11 @@ const mostrarPerros = async () => {
 const mostrarFotoPerro = async (raza) => {
   try {
     const response = await fetch(
-      `https://dog.ceo/api/breed/${raza}/images/random` //hago la misma solicitud qye hice anteriormente para obtener las img
+      `https://dog.ceo/api/breed/${raza}/images/random` //hago la misma solicitud que hice anteriormente para obtener las img
     );
     const data = await response.json();
 
-    const nuevaVentana = window.open("https://www.ejemplo.com", "_blank");
+    const nuevaVentana = window.open( "_blank");
     ; // creo una nueva ventana
     nuevaVentana.document.write('<head> <title>Imagén razas de perros</title></head> <div style="text-align: center;">' +
       '<img src="' + data.message + '" alt="' + raza + '" style="border: 1px solid black;">' +
@@ -77,4 +75,6 @@ mostrarPerros();
 //Al usar funciones async deberiamos trabajar con try y catch
 
 //object.jeys = obtiene un array de todas la claves en este caso con las razas de perros que estan en el response, que esta guardado en la variable data
+
+
 
